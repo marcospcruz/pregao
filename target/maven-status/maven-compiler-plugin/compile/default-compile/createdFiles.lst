@@ -1,0 +1,11 @@
+br\com\marcospcruz\pregao\model\CidadeTO.class
+br\com\marcospcruz\pregao\model\ClientePessoaJuridica.class
+br\com\marcospcruz\pregao\model\LogradouroTO.class
+br\com\marcospcruz\pregao\model\UnidadeFederativaTO.class
+br\com\marcospcruz\pregao\model\TipoLogradouroTO.class
+br\com\marcospcruz\pregao\model\EnderecoTO.class
+br\com\marcospcruz\pregao\model\PaisTO.class
+br\com\marcospcruz\pregao\model\LocalizacaoTO.class
+br\com\marcospcruz\pregao\model\ClienteBaseTO.class
+br\com\marcospcruz\pregao\model\TipoPessoaTO.class
+br\com\marcospcruz\pregao\model\ClientePessoaFisicaTO.class

@@ -2,43 +2,35 @@ package br.com.marcospcruz.pregao.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 /**
  * @author MarcosPereiradaCruz
  *
  */
-@Entity
-@Table(name = "cliente")
-public class ClientTO implements Serializable {
+
+public abstract class ClienteBaseTO implements Serializable {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6834909965459087856L;
+	private static final long serialVersionUID = -1384777177087465587L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idClient;
+	private int idCliente;
+
 	private String nome;
-	@Column(unique = true)
-	private String cpf;
+	@ManyToOne
+	@JoinColumn(name = "idTipoPessoa")
+	private TipoPessoaTO tipoPessoa;
 	@ManyToOne
 	@JoinColumn(name = "idEndereco")
 	private EnderecoTO endereco;
-
-	public int getIdClient() {
-		return idClient;
-	}
-
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
-	}
 
 	public String getNome() {
 		return nome;
@@ -46,14 +38,6 @@ public class ClientTO implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
 	}
 
 	public EnderecoTO getEndereco() {
@@ -64,14 +48,30 @@ public class ClientTO implements Serializable {
 		this.endereco = endereco;
 	}
 
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public TipoPessoaTO getTipoPessoa() {
+		return tipoPessoa;
+	}
+
+	public void setTipoPessoa(TipoPessoaTO tipoPessoa) {
+		this.tipoPessoa = tipoPessoa;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
-		result = prime * result + idClient;
+		result = prime * result + idCliente;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((tipoPessoa == null) ? 0 : tipoPessoa.hashCode());
 		return result;
 	}
 
@@ -83,30 +83,31 @@ public class ClientTO implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ClientTO other = (ClientTO) obj;
-		if (cpf == null) {
-			if (other.cpf != null)
-				return false;
-		} else if (!cpf.equals(other.cpf))
-			return false;
+		ClienteBaseTO other = (ClienteBaseTO) obj;
 		if (endereco == null) {
 			if (other.endereco != null)
 				return false;
 		} else if (!endereco.equals(other.endereco))
 			return false;
-		if (idClient != other.idClient)
+		if (idCliente != other.idCliente)
 			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
+		if (tipoPessoa == null) {
+			if (other.tipoPessoa != null)
+				return false;
+		} else if (!tipoPessoa.equals(other.tipoPessoa))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "ClientTO [idClient=" + idClient + ", nome=" + nome + ", cpf=" + cpf + ", endereco=" + endereco + "]";
+		return "ClienteBaseTO [idCliente=" + idCliente + ", nome=" + nome + ", tipoPessoa=" + tipoPessoa + ", endereco="
+				+ endereco + "]";
 	}
 
 }
